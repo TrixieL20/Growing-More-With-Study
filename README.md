@@ -13,4 +13,9 @@
 
 ## Rule
 <br>매주 일요일 오후 3시까지 문제 풀이를 pull request하고 오후 6시까지 코드에 코멘트를 남긴다.
-<br><br>매주 일요일 오후 6시에 각 주차의 주제에 따른 문제를 선정한다.
+<br><br>매주 일요일 오후 6시에 각 주차의 주제에 따른 문제를 선정한다.<br><br>
+
+## 팀원 소개
+|이민정|박홍정|
+|:---:|:---:|
+|[![Solved.ac프로필](http://mazassumnida.wtf/api/generate_badge?boj=minjung0768)](https://solved.ac/minjung0768)|
