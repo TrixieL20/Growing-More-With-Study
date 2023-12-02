@@ -18,4 +18,4 @@
 ## 팀원 소개
 |이민정|박홍정|
 |:---:|:---:|
-|[![Solved.ac프로필](http://mazassumnida.wtf/api/generate_badge?boj=minjung0768)](https://solved.ac/minjung0768)|
+|[![Solved.ac프로필](http://mazassumnida.wtf/api/generate_badge?boj=minjung0768)](https://solved.ac/minjung0768)|[![Solved.ac프로필](http://mazassumnida.wtf/api/generate_badge?boj=player1113)](https://solved.ac/player1113)|
