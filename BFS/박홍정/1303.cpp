@@ -2,8 +2,8 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-int dx[4] = { 0,0,-1,1 }; //¿©±â µÎ°³¸¦ ¿Ö ÀÌ·¸°Ô ¼³Á¤ÇÑ°ÇÁö
-int dy[4] = { -1,1,0,0 }; //µµÀúÈ÷ ¸ğ¸£°ÚÀ½..
+int dx[4] = { 0,0,-1,1 }; //ì—¬ê¸° ë‘ê°œë¥¼ ì™œ ì´ë ‡ê²Œ ì„¤ì •í•œê±´ì§€
+int dy[4] = { -1,1,0,0 }; //ë„ì €íˆ ëª¨ë¥´ê² ìŒ..
 char board[101][101];
 int visited[101][101];
 int bPower, wPower, n, m;
