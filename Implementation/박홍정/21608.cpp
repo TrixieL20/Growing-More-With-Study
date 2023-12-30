@@ -7,12 +7,12 @@ using namespace std;
 
 
 int student[401][4];
-int map[21][21]; // ÀüÃ¼ ¸Ê Å©±â
-int N; // ÀÔ·Â¹ŞÀº N 
+int map[21][21]; // ì „ì²´ ë§µ í¬ê¸°
+int N; // ì…ë ¥ë°›ì€ N 
 int dx[] = { 0,0,-1,1 };
 int dy[] = { -1,1,0,0 };
 
-// Á¤º¸¸¦ ¸ğ¾ÆµĞ ±¸Á¶Ã¼
+// ì •ë³´ë¥¼ ëª¨ì•„ë‘” êµ¬ì¡°ì²´
 struct Info {
     int x;
     int y;
@@ -20,13 +20,13 @@ struct Info {
     int match;
 };
 
-// Á¤·Ä ±ÔÄ¢ ¸¸µé¾îµĞ ÇÔ¼ö
+// ì •ë ¬ ê·œì¹™ ë§Œë“¤ì–´ë‘” í•¨ìˆ˜
 bool compare(Info a, Info b) {
-    // ¸ÅÄª ¼ö°¡ °°´Ù¸é
+    // ë§¤ì¹­ ìˆ˜ê°€ ê°™ë‹¤ë©´
     if (a.match == b.match) {
-        // ºóÄ­ ¼ö°¡ °°´Ù¸é
+        // ë¹ˆì¹¸ ìˆ˜ê°€ ê°™ë‹¤ë©´
         if (a.empty == b.empty) {
-            // ÇàÀÌ °°´Ù¸é
+            // í–‰ì´ ê°™ë‹¤ë©´
             if (a.x == b.x) return a.y < b.y;
             return a.x < b.x;
         }
@@ -35,42 +35,42 @@ bool compare(Info a, Info b) {
     return a.match > b.match;
 }
 
-// key : ÀÚ¸®¿¡ ¾É´Â ÇĞ»ı ¹øÈ£, x: Çà, y: ¿­
+// key : ìë¦¬ì— ì•‰ëŠ” í•™ìƒ ë²ˆí˜¸, x: í–‰, y: ì—´
 Info bfs(int key, int x, int y) {
     Info tmp = { x,y,0,0 };
     for (int i = 0; i < 4; i++) {
         int nx = x + dx[i];
         int ny = y + dy[i];
         if (nx < 1 || ny < 1 || nx > N || ny > N) continue;
-        // ÇØ´ç ÀÚ¸®°¡ ºñ¾îÀÖÀ¸¸é ºóÄ­+1
+        // í•´ë‹¹ ìë¦¬ê°€ ë¹„ì–´ìˆìœ¼ë©´ ë¹ˆì¹¸+1
         if (map[nx][ny] == 0) {
             tmp.empty++;
             continue;
         }
-        // ÇØ´ç ÀÚ¸®¿¡ ÁÁ¾ÆÇÏ´Â ÇĞ»ıÀÌ ¾É¾ÆÀÖ´Ù¸é ¸ÅÄª+1
+        // í•´ë‹¹ ìë¦¬ì— ì¢‹ì•„í•˜ëŠ” í•™ìƒì´ ì•‰ì•„ìˆë‹¤ë©´ ë§¤ì¹­+1
         for (int j = 0; j < 4; j++) {
             if (student[key][j] == map[nx][ny]) tmp.match++;
         }
     }
-    return tmp; // °»½ÅµÈ Info ¹İÈ¯
+    return tmp; // ê°±ì‹ ëœ Info ë°˜í™˜
 }
 
-// ÇØ´ç ÇĞ»ı ÀÚ¸® ¼±Á¤ ÇÁ·Î¼¼½º ½ÃÀÛ(key : ÇĞ»ı ¹øÈ£)
+// í•´ë‹¹ í•™ìƒ ìë¦¬ ì„ ì • í”„ë¡œì„¸ìŠ¤ ì‹œì‘(key : í•™ìƒ ë²ˆí˜¸)
 void matching(int key) {
-    vector<Info> list; // ÇØ´ç Ä­ÀÇ Info Á¤º¸¸¦ ´ãÀ½
+    vector<Info> list; // í•´ë‹¹ ì¹¸ì˜ Info ì •ë³´ë¥¼ ë‹´ìŒ
     for (int i = 1; i <= N; i++) {
         for (int j = 1; j <= N; j++) {
             if (map[i][j] == 0) list.push_back(bfs(key, i, j));
         }
     }
-    sort(list.begin(), list.end(), compare); // Á¤·Ä ±ÔÄ¢¿¡ µû¶ó Á¤·Ä
-    map[list[0].x][list[0].y] = key; // ÃÖ¿ì¼±¼øÀ§ ÀÚ¸®¿¡ ¾ÉÈû
+    sort(list.begin(), list.end(), compare); // ì •ë ¬ ê·œì¹™ì— ë”°ë¼ ì •ë ¬
+    map[list[0].x][list[0].y] = key; // ìµœìš°ì„ ìˆœìœ„ ìë¦¬ì— ì•‰í˜
 }
 
-// Á¡¼ö °è»ê
+// ì ìˆ˜ ê³„ì‚°
 int getScore() {
     int sum = 0;
-    // k : ÇĞ»ı ¹øÈ£
+    // k : í•™ìƒ ë²ˆí˜¸
     for (int k = 1; k <= N * N; k++) {
         for (int i = 1; i <= N; i++) {
             bool endFlag = false;
@@ -90,7 +90,7 @@ int getScore() {
 
 int main() {
     scanf("%d", &N);
-    vector<int> order; // ÀÚ¸®¿¡ ¾É´Â ¼ø¼­
+    vector<int> order; // ìë¦¬ì— ì•‰ëŠ” ìˆœì„œ
     for (int i = 1; i <= N * N; i++) {
         int key;
         scanf("%d", &key);
@@ -101,7 +101,7 @@ int main() {
             student[key][j] = num;
         }
     }
-    // ¼ø¼­´ë·Î ÀÚ¸®¿¡ ¾ÉÈ÷±â ½ÃÀÛ
+    // ìˆœì„œëŒ€ë¡œ ìë¦¬ì— ì•‰íˆê¸° ì‹œì‘
     for (int i = 0; i < order.size(); i++) {
         matching(order[i]);
     }
